@@ -30,7 +30,7 @@ def capture_image():
     image_num = 0
     start_capture = False
     
-    print("\nPress 'c' to start capturing for GIF and 'q' to exit when done.\n")
+    print("\nGo to CV2 window and press 'c' to start capturing for GIF or 'q' to exit.\n")
     caption = "Press 'c' to start capturing for GIF or 'q' to exit."
     while True:
         # number the images
