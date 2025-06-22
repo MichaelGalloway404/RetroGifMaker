@@ -10,13 +10,13 @@ Give me the name of your GIF to create: gifname
 
 Give me the frame rate of your desired GIF in secounds: 2
 
-How large should the final square GIF be: 664
+How large should the final square GIF be ex: 60 will be 60x60 pixels: 664
 
 Give me the square pixel depth for GIF ex.32 will be 32x32 grainy GIF: 64
 
 opening camera.
 
-Press 'c' to start capturing for GIF and 'q' to exit when done.
+Go to CV2 window and press 'c' to start capturing for GIF or 'q' to exit.
 
 Exiting...
 
