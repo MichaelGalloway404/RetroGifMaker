@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from PIL import Image, ImageSequence 
     
-FOLDER_PATH = "./pngHolder/"
+FOLDER_PATH = os.path.join(os.path.dirname(__file__),'')
 CAPTURE_SQUARE_DIM = 300
 
 # this function draws a square on the camera that will be the eventual GIF
@@ -34,7 +34,7 @@ def capture_image():
     caption = "Press 'c' to start capturing for GIF or 'q' to exit."
     while True:
         # number the images
-        saved_image_path = FOLDER_PATH + str(image_num) + '.png'
+        saved_image_path = FOLDER_PATH  + "pngHolder\\" + str(image_num) + '.png'
         ret, frame = capture.read()
         
         if not ret:
@@ -86,24 +86,26 @@ def capture_image():
     return image_num
 
 if __name__ == "__main__":
-    gifName = input("Give me the name of your GIF to create: ")
-    gifRate = int(input("Give me the frame rate of your desired GIF in secounds: "))
-    finalSize = int(input("How large should the final square GIF be: "))
-    num_images = capture_image()
-    
     try:
-        os.mkdir(FOLDER_PATH)
+        os.mkdir(FOLDER_PATH  + "pngHolder\\")
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise
         pass
+
+    gifName = input("Give me the name of your GIF to create: ")
+    gifRate = int(input("Give me the frame rate of your desired GIF in secounds: "))
+    finalSize = int(input("How large should the final square GIF be ex: 60 will be 60x60 pixels: "))
+    num_images = capture_image()
     
-    # Get all files in the folder
-    png_files = os.listdir(FOLDER_PATH)
+    
+    
+    # # Get all files in the folder
+    # png_files = os.listdir(FOLDER_PATH)
     
     tempFiles = []
     for i in range(num_images):
-        img = FOLDER_PATH + str(i) +".png"
+        img = FOLDER_PATH + "pngHolder\\" + str(i) +".png"
         
         # blow up or shrink final GIF to user specifications
         image = Image.open(img)
@@ -119,7 +121,7 @@ if __name__ == "__main__":
     # Make and save GIF from images
     if(len(frames) != 0):
         frames[0].save(
-            gifName + ".gif",
+            FOLDER_PATH + gifName + ".gif",
             save_all = True,
             append_images = frames[1:],
             duration = gifRate*10,  # frame duration in milliseconds
@@ -129,7 +131,7 @@ if __name__ == "__main__":
         print("GIF created successfully!")
         
         # use matplot to show GIF
-        gif = Image.open("./" + gifName + ".gif")
+        gif = Image.open(FOLDER_PATH + gifName + ".gif")
         # get GIF's frames
         frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
         
@@ -145,10 +147,3 @@ if __name__ == "__main__":
         plt.show()
     else:
         print("No images to make a GIF exiting...")
-
-    
-
-
-
-
-
