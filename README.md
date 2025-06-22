@@ -1,4 +1,4 @@
-# RetroGifMaker
+# Retro Gif Maker
 Simple python cmd GIF maker using cv2, os, matplotlib(pyplot and animation), and pillows(Image and ImageSequence).
 The program draws a square on the camera that will capture the users desired GIF.
 The images are then crushed down then blown up to look retro if the user specifies.
